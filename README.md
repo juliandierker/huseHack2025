@@ -4,4 +4,4 @@ Traveling Salesmanproblems on areas
 
 NamingConvention:
 
-problem*<Problem_Size>*<id>.csv
+problem<Problem_Size><id>.csv

@@ -1,7 +1,11 @@
 import sys
+import os
 
 def solve():
-    file = open(sys.argv[1]) # this is the filename of the problem csv
+    file_name = sys.argv[1]
+    file_path = file_path = os.path.join("problems", file_name)
+
+    file = open(file_path) # this is the filename of the problem csv
     
     # process the problem blabla
     raw = file.read()

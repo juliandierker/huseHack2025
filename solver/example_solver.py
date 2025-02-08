@@ -1,26 +1,34 @@
+import numpy as np
 import sys
 import os
+import time
+sys.path.insert(0, './helper')
+from solution_store_helper import store_solution
 
-def solve():
-    file_name = sys.argv[1]
-    file_path = file_path = os.path.join("problems", file_name)
+SOLVER_NAME = "random_permutation_solver"
 
-    file = open(file_path) # this is the filename of the problem csv
-    
-    # process the problem blabla
-    raw = file.read()
-    file.close()
-    lines = raw.split('\n')
-    number_of_nodes = len(lines)
+def compute_path_length(path,problem):
+    return np.sum(np.linalg.norm(problem[path[1:]] - problem[path[:-1]],axis=1))
 
-    # write a csv solution file 
-    
-    """
-    solvimcsolveface # solver name
-    problem_8_0 # problem name
-    0,1,2,3,4,5,6,7 # solution (ordered indices)
-    """
+def solve(problem):
+    path = np.arange(len(problem))
+    length = compute_path_length(path,problem)
+    return path,length
 
+def compute():
+    # load problem
+    filepath = sys.argv[1]
+    problem = np.loadtxt(filepath,delimiter=',')
 
-if __name__ == "__main__":
-    solve()
+    # start solver
+    start = time.time()
+    solution_path,solution_length = solve(problem)
+    end = time.time()
+
+    duration = end-start
+
+    #store solution
+    store_solution(SOLVER_NAME,filepath,solution_path,solution_length,duration)
+
+# start solver
+compute()

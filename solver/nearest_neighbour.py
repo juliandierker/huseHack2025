@@ -26,7 +26,6 @@ def compute():
     # load problem
     filepath = sys.argv[1]
     problem = np.loadtxt(filepath,delimiter=',')
-    print(problem)
     # start solver
     start = time.time()
     solution_path,solution_length = solve(problem)

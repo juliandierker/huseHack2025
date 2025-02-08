@@ -5,7 +5,7 @@ import time
 sys.path.insert(0, './helper')
 from solution_store_helper import store_solution
 
-SOLVER_NAME = "random_permutation_solver"
+SOLVER_NAME = "example_solver"
 
 def compute_path_length(path,problem):
     return np.sum(np.linalg.norm(problem[path[1:]] - problem[path[:-1]],axis=1))
@@ -31,4 +31,5 @@ def compute():
     store_solution(SOLVER_NAME,filepath,solution_path,solution_length,duration)
 
 # start solver
-compute()
+if __name__ == '__main__':
+    compute()

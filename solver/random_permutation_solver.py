@@ -42,4 +42,5 @@ def compute():
     store_solution(SOLVER_NAME,filepath,solution_path,solution_length,duration)
 
 # start solver
-compute()
+if __name__ == "__main__":
+    compute()

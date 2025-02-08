@@ -1,7 +1,8 @@
 import sys
 import numpy as np
 import time
-from helper.solution_store_helper import store_solution
+sys.path.insert(0, './helper')
+from solution_store_helper import store_solution
 
 SOLVER_NAME = "random_permutation_solver"
 
@@ -23,22 +24,22 @@ def solve(problem):
             opt_length = length
     
     # return best path found
-    return opt_path
+    return opt_path,opt_length
 
 def compute():
     # load problem
-    filepath = open(sys.argv[1]) 
+    filepath = sys.argv[1]
     problem = np.loadtxt(filepath,delimiter=',')
 
     # start solver
     start = time.time()
-    solution_path = solve(problem)
+    solution_path,solution_length = solve(problem)
     end = time.time()
 
     duration = end-start
 
     #store solution
-    store_solution(SOLVER_NAME,filepath,solution_path,duration)
+    store_solution(SOLVER_NAME,filepath,solution_path,solution_length,duration)
 
 # start solver
 compute()

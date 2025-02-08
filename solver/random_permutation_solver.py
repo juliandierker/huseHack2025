@@ -11,12 +11,13 @@ def compute_path_length(path,problem):
 
 def solve(problem):
     # initial random path
-    opt_path = np.random.permutation(8)
+    n = len(problem)
+    opt_path = np.random.permutation(n)
     opt_length = compute_path_length(opt_path,problem)
 
     # search through a few random permutations
     for itr in range(64):
-        path = np.random.permutation(8)
+        path = np.random.permutation(n)
         length = compute_path_length(path,problem)
 
         if(length < opt_length):

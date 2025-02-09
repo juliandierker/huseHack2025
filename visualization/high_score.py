@@ -35,6 +35,7 @@ for solution_filename in os.listdir(solution_dirpath):
         solver_name, problem_path, time, path_length, solution_order = read_solution(solution_path)
         solutions_list.append([solver_name, problem_path, time, path_length])
 solutions = pd.DataFrame(solutions_list, columns=["solver_name", "problem_path", "time", "path_length"])
+solutions["path_length"] = solutions["path_length"].astype(float)
 
 best_solutions_list = []
 for problem_path in solutions["problem_path"].unique():

@@ -25,10 +25,19 @@ solver_name, problem_path, time, path_length, solution_order= read_solution(solu
 
 problem = pd.read_csv(problem_path, header=None)
 problem.columns = ["x", "y"]
-problem["solution_order"] = solution_order
+problem["x"] = problem["x"].astype(float)
+problem["y"] = problem["y"].astype(float)
+problem = problem.iloc[solution_order]
+problem.reset_index(inplace=True)
+problem.rename({"index":"solution_order"}, axis=1, inplace=True)
+problem.reset_index(inplace=True)
 
-chart = alt.Chart(problem).mark_point().encode(x="x", y="y").interactive()
-path = alt.Chart(problem).mark_line().encode(x='x', y='y', order='solution_order')
+st.write(problem)
+
+
+
+chart = alt.Chart(problem).mark_point().encode(x="x", y="y", size="solution_order").interactive()
+path = alt.Chart(problem).mark_line(point=True).encode(x='x', y='y', order='index')
 if display_solution_bool:
     chart = chart + path
 

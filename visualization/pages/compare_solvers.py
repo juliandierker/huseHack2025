@@ -19,8 +19,8 @@ for solution_filename in os.listdir(solution_dirpath):
     if solution_filename.endswith(".csv"):
         solution_path = os.path.join(solution_dirpath, solution_filename)
         solver_name, problem_path, time, path_length, solution_order = read_solution(solution_path)
-        solutions_list.append([solver_name, problem_path, time, path_length])
-solutions = pd.DataFrame(solutions_list, columns=["solver_name", "problem_path", "time", "path_length"])
+        solutions_list.append([solution_filename, solver_name, problem_path, time, path_length])
+solutions = pd.DataFrame(solutions_list, columns=["filename", "solver_name", "problem_path", "time", "path_length"])
 
 
 st.write(solutions)

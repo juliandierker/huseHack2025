@@ -7,7 +7,9 @@ def get_timestamp():
 def store_solution(solver_name,problem_file_path,solution_path,solution_length,computation_time):
     timestamp = get_timestamp()
     
-    file_path = "solutions/solution_" + solver_name + "_" + timestamp + ".csv"
+    number_of_solutions = str(len(os.listdir("solutions/")))
+
+    file_path = "solutions/solution_" + solver_name + "_" + number_of_solutions + timestamp + ".csv"
 
     with open(file_path,"w+") as file:
         file.write(solver_name + ',')

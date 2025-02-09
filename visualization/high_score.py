@@ -41,8 +41,8 @@ for problem_path in solutions["problem_path"].unique():
     best_solution = pd.DataFrame()
     problem_df = solutions[solutions["problem_path"] == problem_path]
     best_solution = problem_df[problem_df["path_length"] == problem_df["path_length"].min()]
-    best_path_length = best_solution["path_length"].values
-    best_solver = best_solution["solver_name"].values
+    best_path_length = best_solution["path_length"].values[0]
+    best_solver = best_solution["solver_name"].values[0]
     best_solutions_list.append([problem_path, best_solver, best_path_length])
 best_solutions = pd.DataFrame(best_solutions_list, columns=["problem_path", "solver_name", "path_length"])
 
